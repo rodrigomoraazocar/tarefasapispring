@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity // Indica que es una entidad
 @Table (name="todos") // Cambiamos en nombre de la tabla en la base datos para "todos"
@@ -14,10 +15,24 @@ public class Todo {
 	@GeneratedValue (strategy= GenerationType.IDENTITY) // Indica que se generara de forma automatica secuencial los valores de id
 	private Long id;
 	
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String descricao;
 	private boolean realizado;
 	private int prioridade;
+	
+	public Todo() {
+	    // Constructor sin argumentos vacío
+	}
+
+	public Todo(String nome, String descricao, boolean realizado, int prioridade) {
+	
+		this.nome = nome;
+		this.descricao = descricao;
+		this.realizado = realizado;
+		this.prioridade = prioridade;
+	}
 	public Long getId() {
 		return id;
 	}
